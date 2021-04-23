@@ -8,24 +8,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<div id="messageBlank" >
-			<div id="message">
-				<div id="messageWrapper">
-					<div class="heading" >
-						Informacja
-					</div>
-					<div class="text" >
-						Wybierz najpierw z jakiego konta chcesz wyświetlić repozytoria
-					</div>
-				</div>
-				<div id="messageHr"></div>
-				<div id="messageWrapper">
-					<div id="messageButton">
-						OK
-					</div>
-				</div>
-			</div>
-		</div>
 		<div id="header">
 			<form id="searcherForm">
 				<i id="searcherIcon" class="fa fa-user icon"></i>
@@ -39,8 +21,19 @@
 					<div class="heading" >
 						Informacje o koncie
 					</div>
+					<div class="subheading" >
+						Nazwa konta
+					</div>
 					<div class="text" >
-						Wybierz najpierw z jakiego konta chcesz wyświetlić repozytoria
+						blablabla
+					</div>
+					<div class="spacerSmall" ></div>
+					<div class="subheading" >
+						Liczba gwiadek
+					</div>
+					<div class="text" >
+						<i class="fa fa-star icon"></i>
+						69
 					</div>
 				</div>
 				<div class="spacerSmall" ></div>
@@ -48,8 +41,54 @@
 					<div class="heading" >
 						Lista repozytoriów
 					</div>
-					<div class="text" >
-						Wybierz najpierw z jakiego konta chcesz wyświetlić repozytoria
+					<div class="spacerSmall" ></div>
+                    <div class="cardItem" >
+                        <div class="cardItemPrimary" >
+                            Repo #1
+                        </div>
+                        <div class="cardItemSecondary" >
+                            <i class="fa fa-star icon"></i>
+                            5
+                        </div>
+                    </div>
+                    <div class="cardItem" >
+                        <div class="cardItemPrimary" >
+                            Repo #2
+                        </div>
+                        <div class="cardItemSecondary" >
+                            <i class="fa fa-star icon"></i>
+                            9
+                        </div>
+                    </div>
+                    <div class="cardItem" >
+                        <div class="cardItemPrimary" >
+                            Repo #3
+                        </div>
+                        <div class="cardItemSecondary" >
+                            <i class="fa fa-star icon"></i>
+                            1
+                        </div>
+                    </div>
+                    <div class="cardItem" >
+                        <div class="cardItemPrimary" >
+                            Repo #4
+                        </div>
+                        <div class="cardItemSecondary" >
+                            <i class="fa fa-star icon"></i>
+                            11
+                        </div>
+                    </div>
+					<div class="spacerSmall" ></div>
+					<div id="pageChooser" >
+						<div class="pageChooser" >
+							<a href="" >
+								<i class="fa fa-angle-left icon"></i>
+							</a>
+							<span>Strona 2 z 3</span>
+							<a href="" >
+								<i class="fa fa-angle-right icon"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

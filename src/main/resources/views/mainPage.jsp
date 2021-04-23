@@ -4,7 +4,7 @@
 		<title>Github listing repos</title>
 		<meta charset="UTF-8">
 		<%@ page contentType="text/html; charset=UTF-8" %>
-		<link rel="stylesheet" href="css/style.css" >
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" >
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -39,19 +39,8 @@
 					<div class="heading" >
 						Informacje o koncie
 					</div>
-					<div class="subheading" >
-						Nazwa konta
-					</div>
 					<div class="text" >
-						blablabla
-					</div>
-					<div class="spacerSmall" ></div>
-					<div class="subheading" >
-						Liczba gwiadek
-					</div>
-					<div class="text" >
-						<i class="fa fa-star icon"></i>
-						69
+						Wybierz najpierw z jakiego konta chcesz wyświetlić repozytoria
 					</div>
 				</div>
 				<div class="spacerSmall" ></div>
@@ -59,62 +48,8 @@
 					<div class="heading" >
 						Lista repozytoriów
 					</div>
-					<div class="spacerSmall" ></div>
-					<a href="" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								Repo #1
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								5
-							</div>
-						</div>
-					</a>
-					<a href="" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								Repo #2
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								9
-							</div>
-						</div>
-					</a>
-					<a href="" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								Repo #3
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								1
-							</div>
-						</div>
-					</a>
-					<a href="" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								Repo #4
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								11
-							</div>
-						</div>
-					</a>
-					<div class="spacerSmall" ></div>
-					<div id="pageChooser" >
-						<div class="pageChooser" >
-							<a href="" >
-								<i class="fa fa-angle-left icon"></i>
-							</a>
-							<span>Strona 2 z 3</span>
-							<a href="" >
-								<i class="fa fa-angle-right icon"></i>
-							</a>
-						</div>
+					<div class="text" >
+						Wybierz najpierw z jakiego konta chcesz wyświetlić repozytoria
 					</div>
 				</div>
 			</div>
@@ -124,7 +59,7 @@
 						Ostatnie zapytania
 					</div>
 					<div class="spacerSmall" ></div>
-					<a href="" >
+					<a href="${pageContext.request.contextPath}/login1/" >
 						<div class="cardItem" >
 							<div class="cardItemPrimary" >
 								login #1
@@ -135,7 +70,7 @@
 							</div>
 						</div>
 					</a>
-					<a href="" >
+					<a href="${pageContext.request.contextPath}/login2/" >
 						<div class="cardItem" >
 							<div class="cardItemPrimary" >
 								login #2
@@ -146,7 +81,7 @@
 							</div>
 						</div>
 					</a>
-					<a href="" >
+					<a href="${pageContext.request.contextPath}/login3/" >
 						<div class="cardItem" >
 							<div class="cardItemPrimary" >
 								login #3
@@ -171,7 +106,7 @@
 		var input = document.getElementById("searcher");
 		input.addEventListener("keyup", function(event) {
 			if (event.keyCode === 13) {
-				location.href =  "https://www.geeksforgeeks.org?dfg="+document.getElementById("searcher").value;
+				location.href =  "${pageContext.request.contextPath}/"+document.getElementById("searcher").value+"/";
 			}
 		});
 		

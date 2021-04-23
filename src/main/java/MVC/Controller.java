@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Controller responsible for request mapping.
  */
@@ -12,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Controller
 {
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String mainPage()
+    public String mainPage(HttpServletRequest request)
     {
         return "views/mainPage.jsp";
     }
 
     @RequestMapping(value = "/{nickname}/", method = RequestMethod.GET)
-    public String user(@PathVariable("nickname") String nickname)
+    public String user(HttpServletRequest request, @PathVariable("nickname") String nickname)
     {
-        return user(nickname, "0");
+        return user(request, nickname, "0");
     }
 
     @RequestMapping(value = "/{nickname}/{page}/", method = RequestMethod.GET)
-    public String user(@PathVariable("nickname") String nickname, @PathVariable("page") String page)
+    public String user(HttpServletRequest request, @PathVariable("nickname") String nickname, @PathVariable("page") String page)
     {
-        return "views/mainPage.jsp";
+        return "views/repositoryList.jsp";
     }
 }

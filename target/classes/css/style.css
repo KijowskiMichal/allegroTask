@@ -182,6 +182,10 @@ body
 	box-sizing: border-box;
 	margin-bottom: 3px;
 }
+.cardItem:hover
+{
+    background: rgba(180, 177, 251, 0.1);
+}
 .cardItemPrimary
 {
 	font-family: 'Nunito', sans-serif;
