@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype>
 <html>
 	<head>
@@ -98,50 +99,25 @@
 						Ostatnie zapytania
 					</div>
 					<div class="spacerSmall" ></div>
-					<a href="${pageContext.request.contextPath}/login1/" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								login #1
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								54
-							</div>
-						</div>
-					</a>
-					<a href="${pageContext.request.contextPath}/login2/" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								login #2
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								69
-							</div>
-						</div>
-					</a>
-					<a href="${pageContext.request.contextPath}/login3/" >
-						<div class="cardItem" >
-							<div class="cardItemPrimary" >
-								login #3
-							</div>
-							<div class="cardItemSecondary" >
-								<i class="fa fa-star icon"></i>
-								84
-							</div>
-						</div>
-					</a>
+					<c:forEach items="${lastRequests}" var="lastRequest">
+                        <a href="${pageContext.request.contextPath}/${lastRequest.nickname}/" >
+                            <div class="cardItem" >
+                                <div class="cardItemPrimary" >
+                                    ${lastRequest.nickname}
+                                </div>
+                                <div class="cardItemSecondary" >
+                                    <i class="fa fa-star icon"></i>
+                                    ${lastRequest.stars}
+                                </div>
+                            </div>
+                        </a>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
 	</body>
 	<script>
-		document.getElementById("messageButton").onclick = function() 
-		{
-			document.getElementById("messageBlank").style.visibility = "hidden";
-			document.getElementById("messageBlank").style.opacity = 0;
-		}
-		
+
 		var input = document.getElementById("searcher");
 		input.addEventListener("keyup", function(event) {
 			if (event.keyCode === 13) {
