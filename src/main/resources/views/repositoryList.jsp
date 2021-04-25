@@ -26,7 +26,7 @@
 						Nazwa konta
 					</div>
 					<div class="text" >
-						blablabla
+						${username}
 					</div>
 					<div class="spacerSmall" ></div>
 					<div class="subheading" >
@@ -34,7 +34,7 @@
 					</div>
 					<div class="text" >
 						<i class="fa fa-star icon"></i>
-						69
+						${stars}
 					</div>
 				</div>
 				<div class="spacerSmall" ></div>
@@ -43,52 +43,33 @@
 						Lista repozytoriów
 					</div>
 					<div class="spacerSmall" ></div>
-                    <div class="cardItem" >
-                        <div class="cardItemPrimary" >
-                            Repo #1
-                        </div>
-                        <div class="cardItemSecondary" >
-                            <i class="fa fa-star icon"></i>
-                            5
-                        </div>
-                    </div>
-                    <div class="cardItem" >
-                        <div class="cardItemPrimary" >
-                            Repo #2
-                        </div>
-                        <div class="cardItemSecondary" >
-                            <i class="fa fa-star icon"></i>
-                            9
-                        </div>
-                    </div>
-                    <div class="cardItem" >
-                        <div class="cardItemPrimary" >
-                            Repo #3
-                        </div>
-                        <div class="cardItemSecondary" >
-                            <i class="fa fa-star icon"></i>
-                            1
-                        </div>
-                    </div>
-                    <div class="cardItem" >
-                        <div class="cardItemPrimary" >
-                            Repo #4
-                        </div>
-                        <div class="cardItemSecondary" >
-                            <i class="fa fa-star icon"></i>
-                            11
-                        </div>
-                    </div>
+					<c:forEach items="${repos}" var="repo">
+                        <a href="${repo.getLink()}" >
+                            <div class="cardItem" >
+                                <div class="cardItemPrimary" >
+                                    ${repo.getNameOfRepository()}
+                                </div>
+                                <div class="cardItemSecondary" >
+                                    <i class="fa fa-star icon"></i>
+                                    ${repo.getStars()}
+                                </div>
+                            </div>
+                        </a>
+					</c:forEach>
 					<div class="spacerSmall" ></div>
 					<div id="pageChooser" >
 						<div class="pageChooser" >
-							<a href="" >
-								<i class="fa fa-angle-left icon"></i>
-							</a>
-							<span>Strona 2 z 3</span>
-							<a href="" >
-								<i class="fa fa-angle-right icon"></i>
-							</a>
+						    <c:if test="${pageNumber!=0}">
+                                <a href="${pageContext.request.contextPath}/${nickname}/${pageNumber-1}/" >
+                                    <i class="fa fa-angle-left icon"></i>
+                                </a>
+							</c:if>
+							<span>Strona ${pageNumber+1} z ${pageMax+1}</span>
+						    <c:if test="${pageNumber!=pageMax}">
+                                <a href="${pageContext.request.contextPath}/${nickname}/${pageNumber+1}/" >
+                                    <i class="fa fa-angle-right icon"></i>
+                                </a>
+                            </c:if>
 						</div>
 					</div>
 				</div>
@@ -103,11 +84,11 @@
                         <a href="${pageContext.request.contextPath}/${lastRequest.nickname}/" >
                             <div class="cardItem" >
                                 <div class="cardItemPrimary" >
-                                    ${lastRequest.nickname}
+                                    ${lastRequest.getNickname()}
                                 </div>
                                 <div class="cardItemSecondary" >
                                     <i class="fa fa-star icon"></i>
-                                    ${lastRequest.stars}
+                                    ${lastRequest.getStars()}
                                 </div>
                             </div>
                         </a>

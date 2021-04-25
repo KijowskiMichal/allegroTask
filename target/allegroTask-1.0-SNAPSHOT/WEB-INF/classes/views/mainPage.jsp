@@ -64,11 +64,11 @@
                         <a href="${pageContext.request.contextPath}/${lastRequest.nickname}/" >
                             <div class="cardItem" >
                                 <div class="cardItemPrimary" >
-                                    ${lastRequest.nickname}
+                                    ${lastRequest.getNickname()}
                                 </div>
                                 <div class="cardItemSecondary" >
                                     <i class="fa fa-star icon"></i>
-                                    ${lastRequest.stars}
+                                    ${lastRequest.getStars()}
                                 </div>
                             </div>
                         </a>
@@ -83,14 +83,14 @@
 			document.getElementById("messageBlank").style.visibility = "hidden";
 			document.getElementById("messageBlank").style.opacity = 0;
 		}
-		
+
 		var input = document.getElementById("searcher");
 		input.addEventListener("keyup", function(event) {
 			if (event.keyCode === 13) {
 				location.href =  "${pageContext.request.contextPath}/"+document.getElementById("searcher").value+"/";
 			}
 		});
-		
+
 		window.onload = function() {
 		var form = document.querySelector("form");
 			form.onsubmit = submitted.bind(form);

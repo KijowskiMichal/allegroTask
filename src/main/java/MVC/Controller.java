@@ -1,5 +1,7 @@
 package MVC;
 
+import OtherClasses.GithubData;
+import OtherClasses.GithubUser;
 import OtherClasses.LastRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,12 +46,6 @@ public class Controller
     @RequestMapping(value = "/{nickname}/", method = RequestMethod.GET)
     public String user(HttpServletRequest request, Model model, @PathVariable("nickname") String nickname)
     {
-        // requests history
-        ArrayList<LastRequest> lastRequests = (ArrayList<LastRequest>) request.getSession().getAttribute("lastRequests");
-        if (lastRequests==null) lastRequests = new ArrayList<LastRequest>();
-        LastRequest.addToLastRequest(lastRequests, nickname, 10);
-        request.getSession().setAttribute("lastRequests", lastRequests);
-        model.addAttribute("lastRequests", lastRequests);
         return user(request, model, nickname, "0");
     }
 
@@ -65,16 +61,31 @@ public class Controller
     @RequestMapping(value = "/{nickname}/{page}/", method = RequestMethod.GET)
     public String user(HttpServletRequest request, Model model, @PathVariable("nickname") String nickname, @PathVariable("page") String page)
     {
-        //pagination
-        int pageNumber = Integer.valueOf(page);
-        int from = pageNumber * 8;
-        int to = from + 8;
-        // requests history
-        ArrayList<LastRequest> lastRequests = (ArrayList<LastRequest>) request.getSession().getAttribute("lastRequests");
-        if (lastRequests==null) lastRequests = new ArrayList<LastRequest>();
-        LastRequest.addToLastRequest(lastRequests, nickname, 10);
-        request.getSession().setAttribute("lastRequests", lastRequests);
-        model.addAttribute("lastRequests", lastRequests);
-        return "views/repositoryList.jsp";
+        GithubUser githubUser = GithubData.getGithubUserFromAPI(nickname);
+        if (githubUser!=null)
+        {
+            model.addAttribute("username", githubUser.getNickname());
+            model.addAttribute("stars", githubUser.getStars());
+            //pagination
+            int pageNumber = Integer.valueOf(page);
+            int pageSize = 8;
+            int from = pageNumber * pageSize;
+            int to = from + pageSize;
+            try
+            {
+                model.addAttribute("repos", githubUser.getRepositoryItems().subList(from, to));
+            } catch (Exception e) {
+                model.addAttribute("repos", githubUser.getRepositoryItems().subList(from, githubUser.getRepositoryItems().size()));
+            }
+            model.addAttribute("pageNumber", pageNumber);
+            model.addAttribute("pageMax", (int)Math.ceil((githubUser.getRepositoryItems().size()-1)/pageSize));
+            // requests history
+            ArrayList<LastRequest> lastRequests = (ArrayList<LastRequest>) request.getSession().getAttribute("lastRequests");
+            if (lastRequests == null) lastRequests = new ArrayList<LastRequest>();
+            LastRequest.addToLastRequest(lastRequests, nickname, githubUser.getStars());
+            request.getSession().setAttribute("lastRequests", lastRequests);
+            model.addAttribute("lastRequests", lastRequests);
+            return "views/repositoryList.jsp";
+        } else return "views/errorPage.jsp";
     }
 }
