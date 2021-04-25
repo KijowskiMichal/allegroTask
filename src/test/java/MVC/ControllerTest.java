@@ -1,7 +1,7 @@
 package MVC;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -27,15 +27,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MVC.Controller.class)
-@ContextConfiguration(classes={MVC.Initializer.class})
-class ControllerTest {
+@ContextConfiguration(classes = {MVC.Initializer.class})
+public class ControllerTest {
+
+    public ControllerTest() {
+    }
 
     @Autowired
     private MockMvc mockMvc;
 
 
     @Test
-    void mainPage() throws Exception
+    public void mainPage() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(status().isOk())
@@ -43,7 +46,7 @@ class ControllerTest {
     }
 
     @Test
-    void user() throws Exception
+    public void user() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders.get("/KijowskiMichal/"))
                 .andExpect(status().isOk())

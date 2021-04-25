@@ -1,7 +1,7 @@
 OtherClasses/LastRequest.class
 OtherClasses/GithubUser.class
-MVC/Config.class
 MVC/Initializer.class
+MVC/Config.class
 OtherClasses/GithubData.class
 OtherClasses/RepositoryItem.class
 MVC/Controller.class
